@@ -1,0 +1,658 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🌻%3C/text%3E%3C/svg%3E">
+<title>Калькулятор стоимости — Solinne🌻</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,800&family=Rubik&display=swap" rel="stylesheet">
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Rubik', sans-serif;
+  background: #fff;
+  color: #6F6B6C;
+  margin: 0;
+  padding: 20px;
+  line-height: 1.4;
+}
+
+.container {
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 10px;
+}
+
+h1 {
+  color: #eb8aa6;
+  font-size: 32px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 30px;
+  font-family: 'Montserrat', sans-serif;
+  letter-spacing: -0.5px;
+}
+
+h2 {
+  color: #604DB6;
+  margin-top: 30px;
+  margin-bottom: 15px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 20px;
+}
+
+p {
+  margin: 10px 0 20px;
+  font-size: 16px;
+}
+
+.section {
+  background: white;
+  border: 1px solid #e0d8d4;
+  border-radius: 14px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.inline-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+  padding: 10px;
+  background: #f9f9f9;
+  border-radius: 8px;
+}
+
+.inline-row label {
+  flex: 1 1 200px;
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+}
+
+.inline-row input[type="checkbox"] {
+  transform: scale(1.2);
+  accent-color: #604DB6;
+  margin-right: 10px;
+}
+
+.inline-row select {
+  padding: 6px 10px;
+  font-size: 14px;
+  border: 2px solid #f2cc0c;
+  border-radius: 5px;
+  color: #6F6B6C;
+  background: white;
+  margin-left: 10px;
+}
+
+.input-row {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 15px;
+  padding: 10px;
+  background: #f9f9f9;
+  border-radius: 8px;
+}
+
+.input-row label {
+  flex: 1;
+  font-size: 15px;
+}
+
+.input-row input[type="number"] {
+  width: 80px;
+  padding: 8px;
+  font-size: 14px;
+  border: 2px solid #f2cc0c;
+  border-radius: 5px;
+  color: #6F6B6C;
+  text-align: center;
+}
+
+.price-hint {
+  color: #888;
+  font-size: 13px;
+  margin-left: 10px;
+}
+
+.svg-section {
+  background: #fff8f8;
+  border-left: 4px solid #eb8aa6;
+  padding: 15px;
+  margin: 20px 0;
+  border-radius: 5px;
+}
+
+.svg-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  padding: 5px;
+}
+
+.svg-item input[type="checkbox"] {
+  transform: scale(1.2);
+  accent-color: #eb8aa6;
+  margin-right: 10px;
+}
+
+.svg-item label {
+  font-size: 14px;
+}
+
+.svg-note {
+  background: #f0f8ff;
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin: 15px 0;
+  font-size: 13px;
+  border-radius: 4px;
+  color: #555;
+}
+
+.total-section {
+  background: linear-gradient(135deg, #f4e4e8, #f0d5dc);
+  border: 2px solid #eb8aa6;
+  border-radius: 12px;
+  padding: 25px;
+  text-align: center;
+  margin: 30px 0;
+}
+
+.total-section h2 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  color: #604DB6;
+}
+
+#total {
+  font-size: 2.2em;
+  font-weight: bold;
+  color: #604DB6;
+  margin: 15px 0;
+}
+
+.payment-info {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+  padding: 5px 0;
+  font-size: 16px;
+}
+
+.payment-info.main {
+  border-top: 2px solid #ddd;
+  padding-top: 15px;
+  margin-top: 15px;
+  font-weight: bold;
+}
+
+.prepay { color: #3ddc97; }
+.remaining { color: #ffb443; }
+
+.btn-container {
+  text-align: center;
+  margin-top: 25px;
+}
+
+.btn {
+  background: #604DB6;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 28px;
+  cursor: pointer;
+  margin: 5px 10px;
+  font-size: 16px;
+  font-family: 'Rubik', sans-serif;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background: #5041a0;
+}
+
+.btn.secondary {
+  background: #eb8aa6;
+}
+
+.btn.secondary:hover {
+  background: #e57c9b;
+}
+
+.btn.tertiary {
+  background: #ccc;
+  color: #666;
+}
+
+.btn.tertiary:hover {
+  background: #bbb;
+}
+
+.note {
+  font-size: 12px;
+  color: #888;
+  margin-top: 20px;
+  padding: 15px;
+  background: #f9f9f9;
+  border-radius: 8px;
+  line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 15px;
+  }
+  
+  h1 {
+    font-size: 28px;
+  }
+  
+  .inline-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .input-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+  
+  .input-row input[type="number"] {
+    width: 100%;
+  }
+  
+  .payment-info {
+    flex-direction: column;
+    gap: 5px;
+  }
+  
+  #total {
+    font-size: 1.8em;
+  }
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+  <h1>Solinne🌻 — Калькулятор стоимости</h1>
+  
+  <div class="section">
+    <h2>Что включить в базовый набор?</h2>
+    <p>Отметьте галочкой нужное и укажите количество.</p>
+    
+    <div class="input-row">
+      <label>Заглавный алфавит <span class="price-hint">(500₽ / шт)</span></label>
+      <input type="number" id="caps" value="0" min="0" onchange="calculateTotal()">
+    </div>
+    
+    <div class="input-row">
+      <label>Прописной алфавит без соединения <span class="price-hint">(400₽ / шт)</span></label>
+      <input type="number" id="lowerNo" value="0" min="0" onchange="calculateTotal()">
+    </div>
+    
+    <div class="input-row">
+      <label>Прописной алфавит с соединением <span class="price-hint">(600₽ / шт)</span></label>
+      <input type="number" id="lowerConn" value="0" min="0" onchange="calculateTotal()">
+    </div>
+    
+    <div class="input-row">
+      <label>Двойной шрифт с соединением <span class="price-hint">(700₽ / шт)</span></label>
+      <input type="number" id="doubleConn" value="0" min="0" onchange="calculateTotal()">
+    </div>
+    
+    <div class="input-row">
+      <label>Цифры <span class="price-hint">(100₽ / шт)</span></label>
+      <input type="number" id="digits" value="0" min="0" onchange="calculateTotal()">
+    </div>
+    
+    <div class="input-row">
+      <label>Знаки препинания, маркеры <span class="price-hint">(20₽ / шт)</span></label>
+      <input type="number" id="punct" value="0" min="0" onchange="calculateTotal()">
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Дополнительные элементы</h2>
+    
+    <div class="input-row">
+      <label>Простые рисунки <span class="price-hint">(50₽ / шт)</span></label>
+      <input type="number" id="drawSimple" value="0" min="0" onchange="calculateTotal()">
+    </div>
+    
+    <div class="input-row">
+      <label>Сложные рисунки <span class="price-hint">(100₽ / шт)</span></label>
+      <input type="number" id="drawComplex" value="0" min="0" onchange="calculateTotal()">
+    </div>
+    
+    <div class="input-row">
+      <label>Иконки соцсетей <span class="price-hint">(80₽ / шт)</span></label>
+      <input type="number" id="icons" value="0" min="0" onchange="calculateTotal()">
+    </div>
+    
+    <div class="input-row">
+      <label>Таблички <span class="price-hint">(100₽ / шт)</span></label>
+      <input type="number" id="plates" value="0" min="0" onchange="calculateTotal()">
+    </div>
+    
+    <div class="input-row">
+      <label>Маленькие надписи <span class="price-hint">(20₽ / шт)</span></label>
+      <input type="number" id="smallTxt" value="0" min="0" onchange="calculateTotal()">
+    </div>
+    
+    <div class="input-row">
+      <label>Разделители <span class="price-hint">(100₽ / шт)</span></label>
+      <input type="number" id="dividers" value="0" min="0" onchange="calculateTotal()">
+    </div>
+    
+    <div class="input-row">
+      <label>Перекраска нарисованных элементов <span class="price-hint">(25₽ / шт)</span></label>
+      <input type="number" id="recolor" value="0" min="0" onchange="calculateTotal()">
+    </div>
+  </div>
+
+  <div class="svg-section">
+    <h2>Экспорт в SVG</h2>
+    <p>Дополнительная оплата за экспорт элементов в SVG формат.</p>
+    
+    <div class="svg-item">
+      <input type="checkbox" id="svgLetters" onchange="calculateTotal()">
+      <label><b>SVG: Буквы</b> <span class="price-hint">(+250₽)</span></label>
+    </div>
+    
+    <div class="svg-item">
+      <input type="checkbox" id="svgDigits" onchange="calculateTotal()">
+      <label><b>SVG: Цифры</b> <span class="price-hint">(+50₽)</span></label>
+    </div>
+    
+    <div class="svg-item">
+      <input type="checkbox" id="svgSimpleDrawings" onchange="calculateTotal()">
+      <label><b>SVG: Простые рисунки</b> <span class="price-hint">(+25₽ / шт)</span></label>
+    </div>
+    
+    <div class="svg-item">
+      <input type="checkbox" id="svgComplexDrawings" onchange="calculateTotal()">
+      <label><b>SVG: Сложные рисунки</b> <span class="price-hint">(+50₽ / шт)</span></label>
+    </div>
+    
+    <div class="svg-item">
+      <input type="checkbox" id="svgPunctuation" onchange="calculateTotal()">
+      <label><b>SVG: Знаки препинания</b> <span class="price-hint">(+10₽ / шт)</span></label>
+    </div>
+    
+    <div class="svg-item">
+      <input type="checkbox" id="svgSocialIcons" onchange="calculateTotal()">
+      <label><b>SVG: Иконки соцсетей</b> <span class="price-hint">(+40₽ / шт)</span></label>
+    </div>
+    
+    <div class="svg-item">
+      <input type="checkbox" id="svgPlates" onchange="calculateTotal()">
+      <label><b>SVG: Таблички</b> <span class="price-hint">(+50₽ / шт)</span></label>
+    </div>
+    
+    <div class="svg-item">
+      <input type="checkbox" id="svgSmallText" onchange="calculateTotal()">
+      <label><b>SVG: Маленькие надписи</b> <span class="price-hint">(+10₽ / шт)</span></label>
+    </div>
+    
+    <div class="svg-item">
+      <input type="checkbox" id="svgDividers" onchange="calculateTotal()">
+      <label><b>SVG: Разделители</b> <span class="price-hint">(+50₽ / шт)</span></label>
+    </div>
+    
+    <div class="svg-note">
+      <b>Важно:</b> Количество SVG-файлов должно совпадать с количеством обычных рисунков в заказе
+    </div>
+  </div>
+
+  <div class="total-section">
+    <h2>Итого: <span id="total">0 ₽</span></h2>
+    
+    <div class="payment-info">
+      <span>Предоплата:</span>
+      <span class="prepay">250 ₽</span>
+    </div>
+    
+    <div class="payment-info main">
+      <span>К оплате сейчас:</span>
+      <span class="prepay">250 ₽</span>
+    </div>
+    
+    <div class="payment-info">
+      <span>Остаток к оплате:</span>
+      <span id="remaining" class="remaining">0 ₽</span>
+    </div>
+    
+    <div class="btn-container">
+      <button class="btn" onclick="sendToTelegram()">ЗАКАЗАТЬ</button>
+      <button class="btn secondary" onclick="copyToClipboard()">Скопировать расчёт</button>
+      <button class="btn tertiary" onclick="resetCalculator()">Сбросить</button>
+    </div>
+  </div>
+
+  <div class="note">
+    <strong>Важная информация:</strong><br>
+    • Если рисунки уже отрисованы, но затем вы решите убрать их из пака — их стоимость остаётся к оплате<br>
+    • Предоплата 250 рублей отправляется после утверждения технического задания<br>
+    • SVG файлы предоставляются только для заказанных элементов
+  </div>
+</div>
+
+<script>
+const prices = {
+  caps: 500,
+  lowerNo: 400,
+  lowerConn: 600,
+  doubleConn: 700,
+  digits: 100,
+  punct: 20,
+  drawSimple: 50,
+  drawComplex: 100,
+  icons: 80,
+  plates: 100,
+  smallTxt: 20,
+  dividers: 100,
+  recolor: 25,
+  prepay: 250,
+  svgLetters: 250,
+  svgDigits: 50,
+  svgSimpleDrawings: 25,
+  svgComplexDrawings: 50,
+  svgPunctuation: 10,
+  svgSocialIcons: 40,
+  svgPlates: 50,
+  svgSmallText: 10,
+  svgDividers: 50
+};
+
+function calculateTotal() {
+  let total = 0;
+  
+  // Основные элементы
+  const caps = parseInt(document.getElementById('caps').value) || 0;
+  const lowerNo = parseInt(document.getElementById('lowerNo').value) || 0;
+  const lowerConn = parseInt(document.getElementById('lowerConn').value) || 0;
+  const doubleConn = parseInt(document.getElementById('doubleConn').value) || 0;
+  const digits = parseInt(document.getElementById('digits').value) || 0;
+  const punct = parseInt(document.getElementById('punct').value) || 0;
+  const drawSimple = parseInt(document.getElementById('drawSimple').value) || 0;
+  const drawComplex = parseInt(document.getElementById('drawComplex').value) || 0;
+  const icons = parseInt(document.getElementById('icons').value) || 0;
+  const plates = parseInt(document.getElementById('plates').value) || 0;
+  const smallTxt = parseInt(document.getElementById('smallTxt').value) || 0;
+  const dividers = parseInt(document.getElementById('dividers').value) || 0;
+  const recolor = parseInt(document.getElementById('recolor').value) || 0;
+  
+  total += caps * prices.caps;
+  total += lowerNo * prices.lowerNo;
+  total += lowerConn * prices.lowerConn;
+  total += doubleConn * prices.doubleConn;
+  total += digits * prices.digits;
+  total += punct * prices.punct;
+  total += drawSimple * prices.drawSimple;
+  total += drawComplex * prices.drawComplex;
+  total += icons * prices.icons;
+  total += plates * prices.plates;
+  total += smallTxt * prices.smallTxt;
+  total += dividers * prices.dividers;
+  total += recolor * prices.recolor;
+  
+  // SVG доплаты
+  if (document.getElementById('svgLetters').checked && (caps > 0 || lowerNo > 0 || lowerConn > 0 || doubleConn > 0)) {
+    total += prices.svgLetters;
+  }
+  
+  if (document.getElementById('svgDigits').checked && digits > 0) {
+    total += prices.svgDigits;
+  }
+  
+  if (document.getElementById('svgSimpleDrawings').checked) {
+    total += drawSimple * prices.svgSimpleDrawings;
+  }
+  
+  if (document.getElementById('svgComplexDrawings').checked) {
+    total += drawComplex * prices.svgComplexDrawings;
+  }
+  
+  if (document.getElementById('svgPunctuation').checked) {
+    total += punct * prices.svgPunctuation;
+  }
+  
+  if (document.getElementById('svgSocialIcons').checked) {
+    total += icons * prices.svgSocialIcons;
+  }
+  
+  if (document.getElementById('svgPlates').checked) {
+    total += plates * prices.svgPlates;
+  }
+  
+  if (document.getElementById('svgSmallText').checked) {
+    total += smallTxt * prices.svgSmallText;
+  }
+  
+  if (document.getElementById('svgDividers').checked) {
+    total += dividers * prices.svgDividers;
+  }
+  
+  document.getElementById('total').textContent = total + ' ₽';
+  const remaining = Math.max(0, total - prices.prepay);
+  document.getElementById('remaining').textContent = remaining + ' ₽';
+}
+
+function sendToTelegram() {
+  const details = [];
+  
+  // Получаем все значения
+  const caps = parseInt(document.getElementById('caps').value) || 0;
+  const lowerNo = parseInt(document.getElementById('lowerNo').value) || 0;
+  const lowerConn = parseInt(document.getElementById('lowerConn').value) || 0;
+  const doubleConn = parseInt(document.getElementById('doubleConn').value) || 0;
+  const digits = parseInt(document.getElementById('digits').value) || 0;
+  const punct = parseInt(document.getElementById('punct').value) || 0;
+  const drawSimple = parseInt(document.getElementById('drawSimple').value) || 0;
+  const drawComplex = parseInt(document.getElementById('drawComplex').value) || 0;
+  const icons = parseInt(document.getElementById('icons').value) || 0;
+  const plates = parseInt(document.getElementById('plates').value) || 0;
+  const smallTxt = parseInt(document.getElementById('smallTxt').value) || 0;
+  const dividers = parseInt(document.getElementById('dividers').value) || 0;
+  const recolor = parseInt(document.getElementById('recolor').value) || 0;
+  
+  if (caps > 0) details.push(`• Заглавный алфавит: ${caps} шт`);
+  if (lowerNo > 0) details.push(`• Прописной алф. без соединения: ${lowerNo} шт`);
+  if (lowerConn > 0) details.push(`• Прописной алф. с соединением: ${lowerConn} шт`);
+  if (doubleConn > 0) details.push(`• Двойной шрифт с соединением: ${doubleConn} шт`);
+  if (digits > 0) details.push(`• Цифры: ${digits} шт`);
+  if (punct > 0) details.push(`• Знаки препинания: ${punct} шт`);
+  if (drawSimple > 0) details.push(`• Простые рисунки: ${drawSimple} шт`);
+  if (drawComplex > 0) details.push(`• Сложные рисунки: ${drawComplex} шт`);
+  if (icons > 0) details.push(`• Иконки соцсетей: ${icons} шт`);
+  if (plates > 0) details.push(`• Таблички: ${plates} шт`);
+  if (smallTxt > 0) details.push(`• Маленькие надписи: ${smallTxt} шт`);
+  if (dividers > 0) details.push(`• Разделители: ${dividers} шт`);
+  if (recolor > 0) details.push(`• Перекраска элементов: ${recolor} шт`);
+  
+  // SVG доплаты
+  const svgExtras = [];
+  if (document.getElementById('svgLetters').checked) svgExtras.push('SVG буквы');
+  if (document.getElementById('svgDigits').checked) svgExtras.push('SVG цифры');
+  if (document.getElementById('svgSimpleDrawings').checked) svgExtras.push('SVG простые рисунки');
+  if (document.getElementById('svgComplexDrawings').checked) svgExtras.push('SVG сложные рисунки');
+  if (document.getElementById('svgPunctuation').checked) svgExtras.push('SVG знаки препинания');
+  if (document.getElementById('svgSocialIcons').checked) svgExtras.push('SVG иконки соцсетей');
+  if (document.getElementById('svgPlates').checked) svgExtras.push('SVG таблички');
+  if (document.getElementById('svgSmallText').checked) svgExtras.push('SVG маленькие надписи');
+  if (document.getElementById('svgDividers').checked) svgExtras.push('SVG разделители');
+  
+  if (svgExtras.length > 0) {
+    details.push(`• Доплаты за SVG: ${svgExtras.join(', ')}`);
+  }
+  
+  const total = document.getElementById('total').textContent;
+  const remaining = document.getElementById('remaining').textContent;
+  
+  const message = 
+    "Здравствуйте!%0A%0A" +
+    "✏️ Заказ:%0A" +
+    details.map(d => d.replace('•', '>')).join("%0A") +
+    "%0A%0A💰 Итого: " + total + 
+    "%0AК оплате сейчас: 250 ₽%0A" +
+    "Остаток: " + remaining + "%0A%0A" +
+    "Как можно обсудить заказ и оплату?";
+  
+  window.open("https://t.me/soliinne?text=" + message, '_blank');
+}
+
+function copyToClipboard() {
+  const total = document.getElementById('total').textContent;
+  const remaining = document.getElementById('remaining').textContent;
+  
+  const text = `Заказ Solinne🌻\n\nИтого: ${total}\nК оплате сейчас: 250 ₽\nОстаток: ${remaining}`;
+  
+  const textArea = document.createElement('textarea');
+  textArea.value = text;
+  document.body.appendChild(textArea);
+  textArea.select();
+  document.execCommand('copy');
+  document.body.removeChild(textArea);
+  alert('Расчёт скопирован в буфер обмена!');
+}
+
+function resetCalculator() {
+  // Сбрасываем все числовые поля
+  const numberInputs = document.querySelectorAll('input[type="number"]');
+  numberInputs.forEach(input => input.value = 0);
+  
+  // Сбрасываем все чекбоксы
+  const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+  checkboxes.forEach(checkbox => checkbox.checked = false);
+  
+  calculateTotal();
+}
+
+// Инициализация
+document.addEventListener('DOMContentLoaded', function() {
+  calculateTotal();
+});
+
+// Автоматический пересчет при изменении любых значений
+document.addEventListener('input', calculateTotal);
+document.addEventListener('change', calculateTotal);
+</script>
+
+</body>
+</html>
