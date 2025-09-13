@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🌻%3C/text%3E%3C/svg%3E">
 <title>Калькулятор стоимости — Solinne🌻</title>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,800&family=Rubik&display=swap" rel="stylesheet">
+<!-- Убрал Google Fonts и буду использовать Times New Roman -->
 
 <style>
 * {
@@ -15,9 +15,9 @@
 }
 
 body {
-  font-family: 'VDS;
+  font-family: 'Times New Roman', Times, serif; /* Изменен шрифт */
   background: #fff;
-  color: #6F6B6C;
+  color: #eb8aa6; /* Изменен цвет текста на #eb8aa6 */
   margin: 0;
   padding: 20px;
   line-height: 1.4;
@@ -37,21 +37,22 @@ h1 {
   font-weight: bold;
   text-align: center;
   margin-bottom: 30px;
-  font-family: 'VDS;
+  font-family: 'Times New Roman', Times, serif; /* Изменен шрифт */
   letter-spacing: -0.5px;
 }
 
 h2 {
-  color: #604DB6;
+  color: #eb8aa6; /* Изменен цвет на #eb8aa6 */
   margin-top: 30px;
   margin-bottom: 15px;
-  font-family: 'VDS;
+  font-family: 'Times New Roman', Times, serif; /* Изменен шрифт */
   font-size: 20px;
 }
 
 p {
   margin: 10px 0 20px;
   font-size: 16px;
+  color: #eb8aa6; /* Изменен цвет на #eb8aa6 */
 }
 
 .section {
@@ -79,11 +80,12 @@ p {
   display: flex;
   align-items: center;
   font-size: 15px;
+  color: #eb8aa6; /* Изменен цвет на #eb8aa6 */
 }
 
 .inline-row input[type="checkbox"] {
   transform: scale(1.2);
-  accent-color: #eb8aa6;
+  accent-color: #eb8aa6; /* Изменен цвет на #eb8aa6 */
   margin-right: 10px;
 }
 
@@ -92,7 +94,7 @@ p {
   font-size: 14px;
   border: 2px solid #f2cc0c;
   border-radius: 5px;
-  color: #6F6B6C;
+  color: #eb8aa6; /* Изменен цвет на #eb8aa6 */
   background: white;
   margin-left: 10px;
 }
@@ -110,6 +112,7 @@ p {
 .input-row label {
   flex: 1;
   font-size: 15px;
+  color: #eb8aa6; /* Изменен цвет на #eb8aa6 */
 }
 
 .input-row input[type="number"] {
@@ -118,14 +121,15 @@ p {
   font-size: 14px;
   border: 2px solid #f2cc0c;
   border-radius: 5px;
-  color: #6F6B6C;
+  color: #eb8aa6; /* Изменен цвет на #eb8aa6 */
   text-align: center;
 }
 
 .price-hint {
-  color: #888;
+  color: #eb8aa6; /* Изменен цвет на #eb8aa6 */
   font-size: 13px;
   margin-left: 10px;
+  opacity: 0.8;
 }
 
 .svg-section {
@@ -151,6 +155,7 @@ p {
 
 .svg-item label {
   font-size: 14px;
+  color: #eb8aa6; /* Изменен цвет на #eb8aa6 */
 }
 
 .svg-note {
@@ -160,7 +165,7 @@ p {
   margin: 15px 0;
   font-size: 13px;
   border-radius: 4px;
-  color: #555;
+  color: #eb8aa6; /* Изменен цвет на #eb8aa6 */
 }
 
 .total-section {
@@ -175,13 +180,13 @@ p {
 .total-section h2 {
   margin-top: 0;
   margin-bottom: 20px;
-  color: #eb8aa6;
+  color: #eb8aa6; /* Изменен цвет на #eb8aa6 */
 }
 
 #total {
   font-size: 2.2em;
   font-weight: bold;
-  color: #eb8aa6;
+  color: #eb8aa6; /* Изменен цвет на #eb8aa6 */
   margin: 15px 0;
 }
 
@@ -191,6 +196,7 @@ p {
   margin: 10px 0;
   padding: 5px 0;
   font-size: 16px;
+  color: #eb8aa6; /* Изменен цвет на #eb8aa6 */
 }
 
 .payment-info.main {
@@ -200,8 +206,8 @@ p {
   font-weight: bold;
 }
 
-.prepay { color: #3ddc97; }
-.remaining { color: #eb8aa6; }
+.prepay { color: #eb8aa6; } /* Изменен цвет на #eb8aa6 */
+.remaining { color: #eb8aa6; } /* Изменен цвет на #eb8aa6 */
 
 .btn-container {
   text-align: center;
@@ -209,7 +215,7 @@ p {
 }
 
 .btn {
-  background: #604DB6;
+  background: #eb8aa6; /* Изменен цвет на #eb8aa6 */
   color: white;
   border: none;
   padding: 12px 24px;
@@ -217,12 +223,12 @@ p {
   cursor: pointer;
   margin: 5px 10px;
   font-size: 16px;
-  font-family: 'VDS;
+  font-family: 'Times New Roman', Times, serif; /* Изменен шрифт */
   transition: background-color 0.3s ease;
 }
 
 .btn:hover {
-  background: #5041a0;
+  background: #e57c9b; /* Более темный оттенок #eb8aa6 */
 }
 
 .btn.secondary {
@@ -234,17 +240,17 @@ p {
 }
 
 .btn.tertiary {
-  background: #ccc;
-  color: #666;
+  background: #eb8aa6; /* Изменен цвет на #eb8aa6 */
+  color: white;
 }
 
 .btn.tertiary:hover {
-  background: #bbb;
+  background: #e57c9b;
 }
 
 .note {
   font-size: 12px;
-  color: #888;
+  color: #eb8aa6; /* Изменен цвет на #eb8aa6 */
   margin-top: 20px;
   padding: 15px;
   background: #f9f9f9;
@@ -293,7 +299,7 @@ p {
   <h1>Solinne🌻 — Калькулятор стоимости</h1>
   
   <div class="section">
-    <h2>Что нужно добавить в набор?</h2>
+    <h2>Что включить в базовый набор?</h2>
     <p>Отметьте галочкой нужное и укажите количество.</p>
     
     <div class="input-row">
